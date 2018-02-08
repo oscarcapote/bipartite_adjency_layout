@@ -13,9 +13,9 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("./jsons/miserables.json", function(miserables) {
+d3.json("./jsons/miserables.json", function(data) {
   var matrix = [],
-      nodes = miserables.nodes,
+      nodes = data.nodes,
       n = nodes.length;
 
   // Compute index per node.
@@ -26,7 +26,7 @@ d3.json("./jsons/miserables.json", function(miserables) {
   });
 
   // Convert links to matrix; count character occurrences.
-  miserables.links.forEach(function(link) {
+  data.links.forEach(function(link) {
     matrix[link.source][link.target].z += link.value;
     matrix[link.target][link.source].z += link.value;
     matrix[link.source][link.source].z += link.value;
