@@ -111,17 +111,20 @@ d3.json("./jsons/miserables.json", function(data) {
     order(this.value);
   });
 
-  function order(value) {
+  function order_x(value) {
     x.domain(orders[value]);
 
     var t = svg.transition().duration(2500);
 
-    t.selectAll(".row")
+    /*t.selectAll(".row")
         .delay(function(d, i) { return x(i) * 4; })
         .attr("transform", function(d, i) { return "translate(0," + x(i) + ")"; })
       .selectAll(".cell")
         .delay(function(d) { return x(d.x) * 4; })
-        .attr("x", function(d) { return x(d.x); });
+        .attr("x", function(d) { return x(d.x); });*/
+    t.selectAll('.cell')
+        .delay(function(d) { return x(d.x) * 4; })
+        .attr("x", function(d) { return x(d.x); })
 
     t.selectAll(".column")
         .delay(function(d, i) { return x(i) * 4; })
