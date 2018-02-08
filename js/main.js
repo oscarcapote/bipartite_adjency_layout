@@ -106,30 +106,44 @@ d3.json("./jsons/miserables.json", function(data) {
     d3.selectAll("text").classed("active", false);
   }
 
-  d3.select("#order").on("change", function() {
-    clearTimeout(timeout);
-    order(this.value);
-  });
+    d3.select("#order_x").on("change", function() {
+      clearTimeout(timeout);
+      order_x(this.value);
+    });
 
-  function order_x(value) {
-    x.domain(orders[value]);
+    d3.select("#order_y").on("change", function() {
+      clearTimeout(timeout);
+      order_y(this.value);
+    });
 
-    var t = svg.transition().duration(2500);
+    function order_x(value) {
+      x.domain(orders[value]);
 
-    /*t.selectAll(".row")
-        .delay(function(d, i) { return x(i) * 4; })
-        .attr("transform", function(d, i) { return "translate(0," + x(i) + ")"; })
-      .selectAll(".cell")
-        .delay(function(d) { return x(d.x) * 4; })
-        .attr("x", function(d) { return x(d.x); });*/
-    t.selectAll('.cell')
-        .delay(function(d) { return x(d.x) * 4; })
-        .attr("x", function(d) { return x(d.x); })
+      var t = svg.transition().duration(2500);
 
-    t.selectAll(".column")
-        .delay(function(d, i) { return x(i) * 4; })
-        .attr("transform", function(d, i) { return "translate(" + x(i) + ")rotate(-90)"; });
-  }
+      /*t.selectAll(".row")
+          .delay(function(d, i) { return x(i) * 4; })
+          .attr("transform", function(d, i) { return "translate(0," + x(i) + ")"; })
+        .selectAll(".cell")
+          .delay(function(d) { return x(d.x) * 4; })
+          .attr("x", function(d) { return x(d.x); });*/
+      t.selectAll('.cell')
+          .delay(function(d) { return x(d.x) * 4; })
+          .attr("x", function(d) { return x(d.x); })
+
+      t.selectAll(".column")
+          .delay(function(d, i) { return x(i) * 4; })
+          .attr("transform", function(d, i) { return "translate(" + x(i) + ")rotate(-90)"; });
+    }
+      function order_y(value) {
+        x.domain(orders[value]);
+
+        var t = svg.transition().duration(2500);
+
+        t.selectAll(".row")
+            .delay(function(d, i) { return x(i) * 4; })
+            .attr("transform", function(d, i) { return "translate(0," + x(i) + ")"; })
+      }
 
   var timeout = setTimeout(function() {
     order("group");
