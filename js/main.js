@@ -3,6 +3,7 @@ var margin = {top: 80, right: 0, bottom: 10, left: 80},
     height = 720;
 
 var x = d3.scale.ordinal().rangeBands([0, width]),
+    y = d3.scale.ordinal().rangeBands([0, width])
     z = d3.scale.linear().domain([0, 4]).clamp(true),
     c = d3.scale.category10().domain(d3.range(10));
 
@@ -13,48 +14,46 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("./jsons/miserables.json", function(data) {
+d3.json("./jsons/net.json", function(data) {
   var matrix = [],
       nodes = data.nodes,
-      n = nodes.length;
+      items = data.items,
+      n = items.length;
 
   // Compute index per node.
   nodes.forEach(function(node, i) {
-    node.index = i;
-    node.count = 0;
-    matrix[i] = d3.range(n).map(function(j) { return {x: j, y: i, z: 0}; });
+      node.index = i;
+      node.count = 0;
+      matrix[i] = d3.range(n).map(function(k) { return {x: i, y: k, z: 0}; });
   });
-
+console.log(matrix);
   // Convert links to matrix; count character occurrences.
   data.links.forEach(function(link) {
-    matrix[link.source][link.target].z += link.value;
-    matrix[link.target][link.source].z += link.value;
-    matrix[link.source][link.source].z += link.value;
-    matrix[link.target][link.target].z += link.value;
-    nodes[link.source].count += link.value;
-    nodes[link.target].count += link.value;
+    matrix[link.source][link.target].z = link.value;
   });
 
   // Precompute the orders.
-  var orders = {
-    name: d3.range(n).sort(function(a, b) { return d3.ascending(nodes[a].name, nodes[b].name); }),
-    count: d3.range(n).sort(function(a, b) { return nodes[b].count - nodes[a].count; }),
-    group: d3.range(n).sort(function(a, b) { return nodes[b].group - nodes[a].group; })
+  var orders_i = {
+    id: d3.range(n).sort(function(a, b) { return d3.ascending(nodes[a].id, nodes[b].id); })
+  };
+  var orders_j = {
+    id: d3.range(n).sort(function(a, b) { return d3.ascending(items[a].id, items[b].id); })
   };
 
   // The default sort order.
-  x.domain(orders.name);
-
+  x.domain(orders_i.id);
+  y.domain(orders_j.id);
+  console.log(matrix);
   svg.append("rect")
       .attr("class", "background")
       .attr("width", width)
       .attr("height", height);
 
   var row = svg.selectAll(".row")
-      .data(matrix)
+      .data(items)
     .enter().append("g")
       .attr("class", "row")
-      .attr("transform", function(d, i) { return "translate(0," + x(i) + ")"; })
+      .attr("transform", function(d, i) { return "translate(0," + y(i) + ")"; })
       .each(row);
 
   row.append("line")
@@ -62,10 +61,12 @@ d3.json("./jsons/miserables.json", function(data) {
 
   row.append("text")
       .attr("x", -6)
-      .attr("y", x.rangeBand() / 2)
+      .attr("y", y.rangeBand() / 2)
       .attr("dy", ".32em")
       .attr("text-anchor", "end")
-      .text(function(d, i) { return nodes[i].name; });
+      .text(function(d, i) {
+          console.log(i);
+         return items[i].id; });
 
   var column = svg.selectAll(".column")
       .data(matrix)
@@ -81,7 +82,7 @@ d3.json("./jsons/miserables.json", function(data) {
       .attr("y", x.rangeBand() / 2)
       .attr("dy", ".32em")
       .attr("text-anchor", "start")
-      .text(function(d, i) { return nodes[i].name; });
+      .text(function(d, i) { return nodes[i].id; });
 
   function row(row) {
     var cell = d3.select(this).selectAll(".cell")
@@ -146,7 +147,7 @@ d3.json("./jsons/miserables.json", function(data) {
       }
 
   var timeout = setTimeout(function() {
-    order("group");
+    order_x("group");
     d3.select("#order").property("selectedIndex", 2).node().focus();
   }, 5000);
 });
