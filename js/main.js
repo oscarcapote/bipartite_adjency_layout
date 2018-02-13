@@ -4,9 +4,9 @@ var margin = {top: 80, right: 0, bottom: 10, left: 80},
 
 var x = d3.scale.ordinal().rangeBands([0, width]),
     y = d3.scale.ordinal().rangeBands([0, width])
-    z = d3.scale.linear().domain([0, 4]).clamp(true),
+    z = d3.scale.linear().domain([0, 5]).clamp(true),
     c = d3.scale.category10().domain(d3.range(10));
-
+console.log('colors',c(0),c(1));
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -18,6 +18,7 @@ d3.json("./jsons/net.json", function(data) {
   var matrix = [],
       nodes = data.nodes,
       items = data.items,
+      n_nodes = nodes.length,
       n = items.length;
 
   // Compute index per node.
@@ -34,26 +35,29 @@ console.log(matrix);
 
   // Precompute the orders.
   var orders_i = {
-    id: d3.range(n).sort(function(a, b) { return d3.ascending(nodes[a].id, nodes[b].id); })
+    id: d3.range(n_nodes).sort(function(a, b) { return d3.ascending(nodes[a].id, nodes[b].id); }),
+    gender: d3.range(n_nodes).sort(function(a, b) { return d3.ascending(nodes[a].gender, nodes[b].gender); }),
   };
   var orders_j = {
-    id: d3.range(n).sort(function(a, b) { return d3.ascending(items[a].id, items[b].id); })
+    id: d3.range(n).sort(function(a, b) { return d3.ascending(items[a].id, items[b].id); }),
+    gendre:d3.range(n).sort(function(a, b) { return d3.ascending(items[a].gendre, items[b].gendre); })
   };
 
   // The default sort order.
-  x.domain(orders_i.id);
-  y.domain(orders_j.id);
-  console.log(matrix);
+  y.domain(orders_i.id);
+  x.domain(orders_j.id);
   svg.append("rect")
       .attr("class", "background")
       .attr("width", width)
       .attr("height", height);
 
   var row = svg.selectAll(".row")
-      .data(items)
+      .data(matrix)
     .enter().append("g")
       .attr("class", "row")
-      .attr("transform", function(d, i) { return "translate(0," + y(i) + ")"; })
+      .attr("transform", function(d, i) {
+        console.log('i',i,y(i));
+        return "translate(0," + y(i) + ")"; })
       .each(row);
 
   row.append("line")
@@ -64,12 +68,10 @@ console.log(matrix);
       .attr("y", y.rangeBand() / 2)
       .attr("dy", ".32em")
       .attr("text-anchor", "end")
-      .text(function(d, i) {
-          console.log(i);
-         return items[i].id; });
+      .text(function(d, i) {return nodes[i].id; });
 
   var column = svg.selectAll(".column")
-      .data(matrix)
+      .data(items)
     .enter().append("g")
       .attr("class", "column")
       .attr("transform", function(d, i) { return "translate(" + x(i) + ")rotate(-90)"; });
@@ -82,18 +84,21 @@ console.log(matrix);
       .attr("y", x.rangeBand() / 2)
       .attr("dy", ".32em")
       .attr("text-anchor", "start")
-      .text(function(d, i) { return nodes[i].id; });
+      .text(function(d, i) { return items[i].id; });
 
   function row(row) {
+    console.log('row',row,row.filter(function(d) { return d.z; }));
     var cell = d3.select(this).selectAll(".cell")
         .data(row.filter(function(d) { return d.z; }))
       .enter().append("rect")
         .attr("class", "cell")
-        .attr("x", function(d) { return x(d.x); })
+        .attr("x", function(d) {
+          console.log('cell',d);
+          return x(d.y); })
         .attr("width", x.rangeBand())
-        .attr("height", x.rangeBand())
-        .style("fill-opacity", function(d) { return z(d.z); })
-        .style("fill", function(d) { return nodes[d.x].group == nodes[d.y].group ? c(nodes[d.x].group) : null; })
+        .attr("height", y.rangeBand())
+        //.style("fill-opacity", function(d) { return z(d.z); })
+        .style("fill", function(d) { return c(z(d.z)); })
         .on("mouseover", mouseover)
         .on("mouseout", mouseout);
   }
@@ -109,6 +114,7 @@ console.log(matrix);
 
     d3.select("#order_x").on("change", function() {
       clearTimeout(timeout);
+      console.log(this.value);
       order_x(this.value);
     });
 
@@ -118,7 +124,7 @@ console.log(matrix);
     });
 
     function order_x(value) {
-      x.domain(orders[value]);
+      x.domain(orders_j[value]);
 
       var t = svg.transition().duration(2500);
 
@@ -130,20 +136,21 @@ console.log(matrix);
           .attr("x", function(d) { return x(d.x); });*/
       t.selectAll('.cell')
           .delay(function(d) { return x(d.x) * 4; })
-          .attr("x", function(d) { return x(d.x); })
+          .attr("x", function(d,i) {
+            return x(d.y); })
 
       t.selectAll(".column")
           .delay(function(d, i) { return x(i) * 4; })
           .attr("transform", function(d, i) { return "translate(" + x(i) + ")rotate(-90)"; });
     }
       function order_y(value) {
-        x.domain(orders[value]);
+        y.domain(orders_i[value]);
 
         var t = svg.transition().duration(2500);
 
         t.selectAll(".row")
-            .delay(function(d, i) { return x(i) * 4; })
-            .attr("transform", function(d, i) { return "translate(0," + x(i) + ")"; })
+            .delay(function(d, i) { return y(i) * 4; })
+            .attr("transform", function(d, i) { return "translate(0," + y(i) + ")"; })
       }
 
   var timeout = setTimeout(function() {

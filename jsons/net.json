@@ -1,23 +1,23 @@
 {
     "items": [
         {
-            "gender": "accio",
+            "gendre": "accio",
             "id": 0
         },
         {
-            "gender": "drama",
+            "gendre": "drama",
             "id": 1
         },
         {
-            "gender": "accio",
+            "gendre": "accio",
             "id": 2
         },
         {
-            "gender": "accio",
+            "gendre": "accio",
             "id": 3
         },
         {
-            "gender": "drama",
+            "gendre": "drama",
             "id": 4
         }
     ],
