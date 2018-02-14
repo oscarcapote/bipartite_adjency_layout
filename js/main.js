@@ -6,7 +6,7 @@ var x = d3.scale.ordinal().rangeBands([0, width]),
     y = d3.scale.ordinal().rangeBands([0, width])
     z = d3.scale.linear().domain([0, 5]).clamp(true),
     c = d3.scale.category10().domain(d3.range(10));
-console.log('colors',c(0),c(1));
+
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -27,7 +27,7 @@ d3.json("./jsons/net.json", function(data) {
       node.count = 0;
       matrix[i] = d3.range(n).map(function(k) { return {x: i, y: k, z: 0}; });
   });
-console.log(matrix);
+
   // Convert links to matrix; count character occurrences.
   data.links.forEach(function(link) {
     matrix[link.source][link.target].z = link.value;
@@ -56,7 +56,6 @@ console.log(matrix);
     .enter().append("g")
       .attr("class", "row")
       .attr("transform", function(d, i) {
-        console.log('i',i,y(i));
         return "translate(0," + y(i) + ")"; })
       .each(row);
 
@@ -86,21 +85,36 @@ console.log(matrix);
       .attr("text-anchor", "start")
       .text(function(d, i) { return items[i].id; });
 
+  // Define the div for the tooltip
+  var div = d3.select("body").append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
+
   function row(row) {
-    console.log('row',row,row.filter(function(d) { return d.z; }));
     var cell = d3.select(this).selectAll(".cell")
         .data(row.filter(function(d) { return d.z; }))
       .enter().append("rect")
         .attr("class", "cell")
         .attr("x", function(d) {
-          console.log('cell',d);
           return x(d.y); })
         .attr("width", x.rangeBand())
         .attr("height", y.rangeBand())
         //.style("fill-opacity", function(d) { return z(d.z); })
         .style("fill", function(d) { return c(z(d.z)); })
-        .on("mouseover", mouseover)
-        .on("mouseout", mouseout);
+        .on("mouseover", function(d) {
+          console.log(d3.event.pageX,x(d.y));
+            div.transition()
+                .duration(200)
+                .style("opacity", .9);
+            div	.html('Usuari: '+d.x + "  Sexe:"+nodes[d.x].gender+"<br/>"  + "Pel·licula: "+d.y+ "  Gènere:"+items[d.y].gendre+"<br/>"+"Rating: "+d.z)
+                .style("left", d3.event.pageX-320 + "px")
+                .style("top", d3.event.pageY-15 + "px");
+            })
+        .on("mouseout", function(d) {
+            div.transition()
+                .duration(500)
+                .style("opacity", 0);
+        });
   }
 
   function mouseover(p) {
@@ -114,7 +128,7 @@ console.log(matrix);
 
     d3.select("#order_x").on("change", function() {
       clearTimeout(timeout);
-      console.log(this.value);
+      //console.log(this.value);
       order_x(this.value);
     });
 
@@ -135,7 +149,7 @@ console.log(matrix);
           .delay(function(d) { return x(d.x) * 4; })
           .attr("x", function(d) { return x(d.x); });*/
       t.selectAll('.cell')
-          .delay(function(d) { return x(d.x) * 4; })
+          .delay(function(d) { return x(d.y) * 4; })
           .attr("x", function(d,i) {
             return x(d.y); })
 
