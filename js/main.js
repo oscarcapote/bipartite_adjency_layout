@@ -4,8 +4,8 @@ var margin = {top: 80, right: 0, bottom: 10, left: 80},
 
 var x = d3.scale.ordinal().rangeBands([0, width]),
     y = d3.scale.ordinal().rangeBands([0, width])
-    z = d3.scale.linear().domain([0, 5]).clamp(true),
-    c = d3.scale.category10().domain(d3.range(10));
+    z = d3.scale.linear().domain([0, 1]).clamp(true),
+    c = d3.scale.linear().range([0,1]).range(["#ffff00","#ff0000"]);
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -91,8 +91,9 @@ d3.json("./jsons/net.json", function(data) {
       .style("opacity", 0);
 
   function row(row) {
+    //console.log('colores:',c(0),c(0.5),c(1));
     var cell = d3.select(this).selectAll(".cell")
-        .data(row.filter(function(d) { return d.z; }))
+        .data(row)
       .enter().append("rect")
         .attr("class", "cell")
         .attr("x", function(d) {
@@ -100,7 +101,7 @@ d3.json("./jsons/net.json", function(data) {
         .attr("width", x.rangeBand())
         .attr("height", y.rangeBand())
         //.style("fill-opacity", function(d) { return z(d.z); })
-        .style("fill", function(d) { return c(z(d.z)); })
+        .style("fill", function(d) { return c(0.5+(d.z==0 ? 0:0.5)*Math.random()); })
         .on("mouseover", function(d) {
           console.log(d3.event.pageX,x(d.y));
             div.transition()
