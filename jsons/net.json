@@ -1,35 +1,26 @@
 {
     "items": [
         {
-            "gendre": "accio",
+            "gender": "accio",
             "id": 0
         },
         {
-            "gendre": "drama",
+            "gender": "drama",
             "id": 1
         },
         {
-<<<<<<< HEAD
             "gender": "drama",
             "id": 2
         },
         {
             "gender": "drama",
-=======
-            "gendre": "drama",
-            "id": 2
-        },
-        {
-            "gendre": "drama",
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "id": 3
         },
         {
-            "gendre": "drama",
+            "gender": "drama",
             "id": 4
         },
         {
-<<<<<<< HEAD
             "gender": "accio",
             "id": 5
         },
@@ -127,105 +118,6 @@
         },
         {
             "gender": "drama",
-=======
-            "gendre": "accio",
-            "id": 5
-        },
-        {
-            "gendre": "accio",
-            "id": 6
-        },
-        {
-            "gendre": "drama",
-            "id": 7
-        },
-        {
-            "gendre": "accio",
-            "id": 8
-        },
-        {
-            "gendre": "accio",
-            "id": 9
-        },
-        {
-            "gendre": "drama",
-            "id": 10
-        },
-        {
-            "gendre": "accio",
-            "id": 11
-        },
-        {
-            "gendre": "accio",
-            "id": 12
-        },
-        {
-            "gendre": "drama",
-            "id": 13
-        },
-        {
-            "gendre": "accio",
-            "id": 14
-        },
-        {
-            "gendre": "drama",
-            "id": 15
-        },
-        {
-            "gendre": "accio",
-            "id": 16
-        },
-        {
-            "gendre": "drama",
-            "id": 17
-        },
-        {
-            "gendre": "accio",
-            "id": 18
-        },
-        {
-            "gendre": "accio",
-            "id": 19
-        },
-        {
-            "gendre": "accio",
-            "id": 20
-        },
-        {
-            "gendre": "drama",
-            "id": 21
-        },
-        {
-            "gendre": "accio",
-            "id": 22
-        },
-        {
-            "gendre": "drama",
-            "id": 23
-        },
-        {
-            "gendre": "drama",
-            "id": 24
-        },
-        {
-            "gendre": "accio",
-            "id": 25
-        },
-        {
-            "gendre": "drama",
-            "id": 26
-        },
-        {
-            "gendre": "accio",
-            "id": 27
-        },
-        {
-            "gendre": "accio",
-            "id": 28
-        },
-        {
-            "gendre": "drama",
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "id": 29
         }
     ],
@@ -284,12 +176,6 @@
             "source": 0,
             "target": 10,
             "value": 1
-<<<<<<< HEAD
-        },
-        {
-            "source": 0,
-            "target": 11,
-=======
         },
         {
             "source": 0,
@@ -314,117 +200,45 @@
         {
             "source": 0,
             "target": 15,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 1
         },
         {
             "source": 0,
-<<<<<<< HEAD
-            "target": 12,
-=======
             "target": 16,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 0
         },
         {
             "source": 0,
-<<<<<<< HEAD
-            "target": 13,
-=======
-            "target": 17,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
-            "value": 0
-        },
-        {
-            "source": 0,
-<<<<<<< HEAD
-            "target": 14,
-=======
-            "target": 18,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
-            "value": 0
-        },
-        {
-            "source": 0,
-<<<<<<< HEAD
-            "target": 15,
-=======
-            "target": 19,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
-            "value": 1
-        },
-        {
-            "source": 0,
-<<<<<<< HEAD
-            "target": 16,
-=======
-            "target": 20,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
-            "value": 0
-        },
-        {
-            "source": 0,
-<<<<<<< HEAD
             "target": 17,
             "value": 0
         },
         {
             "source": 0,
             "target": 18,
-=======
-            "target": 21,
-            "value": 1
-        },
-        {
-            "source": 0,
-            "target": 22,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 0
         },
         {
             "source": 0,
-<<<<<<< HEAD
             "target": 19,
-=======
-            "target": 23,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 1
         },
         {
             "source": 0,
-<<<<<<< HEAD
             "target": 20,
-=======
-            "target": 24,
-            "value": 1
-        },
-        {
-            "source": 0,
-            "target": 25,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 0
         },
         {
             "source": 0,
-<<<<<<< HEAD
             "target": 21,
-=======
-            "target": 26,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 1
         },
         {
             "source": 0,
-<<<<<<< HEAD
             "target": 22,
-=======
-            "target": 27,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 0
         },
         {
             "source": 0,
-<<<<<<< HEAD
             "target": 23,
             "value": 1
         },
@@ -436,14 +250,10 @@
         {
             "source": 0,
             "target": 25,
-=======
-            "target": 28,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 0
         },
         {
             "source": 0,
-<<<<<<< HEAD
             "target": 26,
             "value": 1
         },
@@ -459,8 +269,6 @@
         },
         {
             "source": 0,
-            "target": 29,
-=======
             "target": 29,
             "value": 0
         },
@@ -487,19 +295,10 @@
         {
             "source": 1,
             "target": 4,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 0
         },
         {
             "source": 1,
-<<<<<<< HEAD
-            "target": 0,
-            "value": 1
-        },
-        {
-            "source": 1,
-            "target": 1,
-=======
             "target": 5,
             "value": 0
         },
@@ -516,33 +315,15 @@
         {
             "source": 1,
             "target": 8,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 1
         },
         {
             "source": 1,
-<<<<<<< HEAD
-            "target": 2,
-=======
             "target": 9,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 0
         },
         {
             "source": 1,
-<<<<<<< HEAD
-            "target": 3,
-            "value": 1
-        },
-        {
-            "source": 1,
-            "target": 4,
-            "value": 0
-        },
-        {
-            "source": 1,
-            "target": 5,
-=======
             "target": 10,
             "value": 0
         },
@@ -559,125 +340,30 @@
         {
             "source": 1,
             "target": 13,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 0
         },
         {
             "source": 1,
-<<<<<<< HEAD
-            "target": 6,
-=======
-            "target": 14,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
-            "value": 0
-        },
-        {
-            "source": 1,
-<<<<<<< HEAD
-            "target": 7,
-            "value": 0
-        },
-        {
-            "source": 1,
-            "target": 8,
-=======
-            "target": 15,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
-            "value": 1
-        },
-        {
-            "source": 1,
-<<<<<<< HEAD
-            "target": 9,
-            "value": 0
-        },
-        {
-            "source": 1,
-            "target": 10,
-=======
-            "target": 16,
-            "value": 1
-        },
-        {
-            "source": 1,
-            "target": 17,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
-            "value": 0
-        },
-        {
-            "source": 1,
-<<<<<<< HEAD
-            "target": 11,
-            "value": 0
-        },
-        {
-            "source": 1,
-            "target": 12,
-=======
-            "target": 18,
-            "value": 1
-        },
-        {
-            "source": 1,
-            "target": 19,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
-            "value": 1
-        },
-        {
-            "source": 1,
-<<<<<<< HEAD
-            "target": 13,
-=======
-            "target": 20,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
-            "value": 0
-        },
-        {
-            "source": 1,
-<<<<<<< HEAD
             "target": 14,
             "value": 0
         },
         {
             "source": 1,
             "target": 15,
-=======
-            "target": 21,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "value": 1
         },
         {
             "source": 1,
-<<<<<<< HEAD
             "target": 16,
             "value": 1
         },
         {
             "source": 1,
             "target": 17,
-=======
-            "target": 22,
-            "value": 1
-        },
-        {
-            "source": 1,
-            "target": 23,
-            "value": 1
-        },
-        {
-            "source": 1,
-            "target": 24,
             "value": 0
         },
         {
             "source": 1,
-            "target": 25,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
-            "value": 0
-        },
-        {
-            "source": 1,
-<<<<<<< HEAD
             "target": 18,
             "value": 1
         },
@@ -728,18 +414,6 @@
         },
         {
             "source": 1,
-=======
-            "target": 26,
-            "value": 1
-        },
-        {
-            "source": 1,
-            "target": 27,
-            "value": 0
-        },
-        {
-            "source": 1,
->>>>>>> 2c3a314aaa744b93f52b2a2810bbbaff8ecd8a2c
             "target": 28,
             "value": 1
         },
