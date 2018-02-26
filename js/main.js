@@ -7,6 +7,9 @@ var x = d3.scale.ordinal().rangeBands([0, width]),
     z = d3.scale.linear().domain([0, 1]).clamp(true),
     c = d3.scale.linear().range([0,1]).range(["#ffff00","#ff0000"]);
 
+var selectedRating = d3.select('#rating').property('value');
+
+
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -101,7 +104,7 @@ d3.json("./jsons/net.json", function(data) {
         .attr("width", x.rangeBand())
         .attr("height", y.rangeBand())
         //.style("fill-opacity", function(d) { return z(d.z); })
-        .style("fill", function(d) { return c(0.5+(d.z==0 ? 0:0.5)*Math.random()); })
+        .style("fill", function(d) {return c(d.z[selectedRating])})
         .on("mouseover", function(d) {
           console.log(d3.event.pageX,x(d.y));
             div.transition()
@@ -139,6 +142,7 @@ d3.json("./jsons/net.json", function(data) {
     });
 
     function order_x(value) {
+    console.log('cambio x');
       x.domain(orders_j[value]);
 
       var t = svg.transition().duration(2500);
@@ -160,13 +164,21 @@ d3.json("./jsons/net.json", function(data) {
     }
       function order_y(value) {
         y.domain(orders_i[value]);
-
+        console.log('cambio y');
         var t = svg.transition().duration(2500);
 
         t.selectAll(".row")
             .delay(function(d, i) { return y(i) * 4; })
             .attr("transform", function(d, i) { return "translate(0," + y(i) + ")"; })
       }
+
+  function change_rating(selectedRating){
+    d3.selectAll('.cell').style('fill', function(d) {return c(d.z[selectedRating])});
+  }
+  d3.select('#rating').on('change',function(d,i){
+    console.log('selected',this.value);
+    change_rating(this.value)
+  })
 
   var timeout = setTimeout(function() {
     order_x("group");
