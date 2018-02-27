@@ -110,7 +110,7 @@ d3.json("./jsons/net.json", function(data) {
             div.transition()
                 .duration(200)
                 .style("opacity", .9);
-            div	.html('Usuari: '+d.x + "  Sexe:"+nodes[d.x].gender+"<br/>"  + "Pel·licula: "+d.y+ "  Gènere:"+items[d.y].gendre+"<br/>"+"Rating: "+d.z)
+            div	.html('Usuari: '+d.x + "  Sexe:"+nodes[d.x].gender+"<br/>"  + "Pel·licula: "+d.y+ "  Gènere:"+items[d.y].gendre+"<br/>"+"P(r_ij="+selectedRating+")="+d.z[selectedRating])
                 .style("left", d3.event.pageX-320 + "px")
                 .style("top", d3.event.pageY-15 + "px");
             })
